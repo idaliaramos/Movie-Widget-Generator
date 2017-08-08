@@ -1,0 +1,24 @@
+{
+  "name": "g60-q1-project",
+  "version": "1.0.0",
+  "description": "",
+  "private": false,
+  "scripts": {
+    "build": "webpack",
+    "build:watch": "webpack --watch",
+    "test": "mocha src/**/*.test.js",
+    "start": "serve public/"
+  },
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "eslint": "^4.3.0",
+    "eslint-loader": "^1.9.0",
+    "mocha": "^3.5.0",
+    "rimraf": "^2.6.1",
+    "webpack": "^3.4.1"
+  },
+  "dependencies": {
+    "elementx": "^3.1.2",
+    "serve": "^6.0.5"
+  }
+}
