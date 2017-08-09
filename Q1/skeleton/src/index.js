@@ -45,7 +45,7 @@ function run() {
   // $root.appendChild($app);
 }
 
-function renderWidget(data) {
+function renderWidget(data1, data2) {
   return div(
     { class: 'card-image' },
     div(
@@ -53,27 +53,27 @@ function renderWidget(data) {
       div({ class: 'card' }, [
         div(
           { class: 'card-image' },
-          img({ class: 'card-image', src: data.image })
+          img({ class: 'card-image', src: data1.image })
         ),
-        div({ class: 'card-title' }, data.title),
+        div({ class: 'card-title' }, data1.title),
         div(
           { class: 'card-rating' },
           'Metacritic Rating ',
-          data.metaCriticRating
+          data1.metaCriticRating + '%'
         ),
-        div({ class: 'card-rating' }, 'IMDB Rating ', data.rating),
+        div({ class: 'card-rating' }, 'IMDB Rating ', data1.rating),
         div(
           { class: 'card-rating' },
           'Rotten Tomatoes Rating ',
-          data.rottenRating
+          data2.rottenRating + '%'
         ),
-        div({ class: 'card-content' }, 'Summary', p(data.summary))
+        div({ class: 'card-content' }, 'Summary', p(data1.summary))
       ])
     )
   );
 }
 
-let container = div({ class: 'container' });
+let container = div({ class: 'container row' });
 
 let banner = nav(
   div({ class: 'nav-wrapper' }, a({ class: 'brand-logo' }, 'Movie title'))
