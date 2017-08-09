@@ -4,12 +4,11 @@ const { div, img, p, main, form, button, a, input, nav } = require('elementx');
 addEventListener('DOMContentLoaded', run);
 function run() {
   const $root = document.querySelector('#root');
+  // $root.className = 'row';
   $root.appendChild(banner);
   $root.appendChild(search);
+  $root.appendChild(container);
 
-  // 1. generate the HTML form that takes the URL as input
-  // 2. when that form submits, invoke your scraper (i.e. call scraper.scrape(url))
-  // 3. when that scraper finishes, generate a widget
   const $button = document.querySelector('button');
   const $input = document.querySelector('input');
   let scraper = new ImdbPageScraper();
@@ -37,13 +36,16 @@ function run() {
 
 function renderWidget(data) {
   return div(
-    { class: 'row' },
+    { class: 'card-image' },
     div(
       { class: 'col s12 m6' },
       div({ class: 'card' }, [
         div(
           { class: 'card-image' },
-          img({ class: 'card-image', src: data.image, width: '300px' })
+          img({ class: 'card-image', src: data.image })
+          // video({
+          //    width= "320", height = "240" },
+          //    source({src:'', type: "video/mp4" }))
         ),
         div({ class: 'card-title' }, data.title),
         div(
@@ -52,18 +54,13 @@ function renderWidget(data) {
           data.metaCriticRating
         ),
         div({ class: 'card-rating' }, 'IMDB Rating ', data.rating),
-        div({ class: 'card-content' }, p(data.summary)),
-        div(
-          { class: 'card-action' },
-          a(
-            { href: 'http://www.imdb.com/title/tt5140878/?ref_=inth_ov_tt' },
-            'ATag title'
-          )
-        )
+        div({ class: 'card-content' }, 'Summary', p(data.summary))
       ])
     )
   );
 }
+
+let container = div({ class: 'container' });
 
 let banner = nav(
   div({ class: 'nav-wrapper' }, a({ class: 'brand-logo' }, 'Movie title'))
