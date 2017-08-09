@@ -8,7 +8,7 @@ module.exports = {
     mocha: true
   },
   rules: {
-    // 'no-console': 'off'
+    'no-console': 'off'
     // 'no-debugger': 'off'
   }
 };
