@@ -1,5 +1,5 @@
 const ImdbPageScraper = require('./scrapers/ImdbPageScraper');
-// const RottenTomatoesScraper = require('./scrapers/RottenTomatoesScraper');
+const RottenTomatoesScraper = require('./scrapers/RottenTomatoesScraper');
 const { div, img, p, main, form, button, a, input, nav } = require('elementx');
 
 addEventListener('DOMContentLoaded', run);
@@ -12,17 +12,27 @@ function run() {
   $root.appendChild(container);
 
   const $button = document.querySelector('button');
-  const $input = document.querySelector('input');
+  const $input = document.querySelectorAll('input')[0];
+  const $input2 = document.querySelectorAll('input')[1];
   let scraper = new ImdbPageScraper();
+  let scraper2 = new RottenTomatoesScraper();
   $button.addEventListener('click', function(event) {
     event.preventDefault();
     const movieInput = $input.value;
-    console.log('Movie', movieInput);
-    scraper.scrape(movieInput).then(data => {
-      const $widget = renderWidget(data);
-      // $root.appendChild(nav)
+    const movieInput2 = $input2.value;
+    Promise.all([
+      scraper.scrape(movieInput),
+      scraper2.scrape(movieInput2)
+    ]).then(results => {
+      const $widget = renderWidget(results[0], results[1]);
       $root.appendChild($widget);
     });
+
+    // scraper.scrape(movieInput).then(data => {
+    //   const $widget = renderWidget(data);
+    //   // $root.appendChild(nav)
+    //   $root.appendChild($widget);
+    // });
   });
 
   // scraper.scrape(url).then(data => {
@@ -52,6 +62,11 @@ function renderWidget(data) {
           data.metaCriticRating
         ),
         div({ class: 'card-rating' }, 'IMDB Rating ', data.rating),
+        div(
+          { class: 'card-rating' },
+          'Rotten Tomatoes Rating ',
+          data.rottenRating
+        ),
         div({ class: 'card-content' }, 'Summary', p(data.summary))
       ])
     )
@@ -127,13 +142,14 @@ let search2 = main({ class: 'container' }, [
     div({ id: 'listings', class: 'row' })
   )
 ]);
-
-Promise.all([
-  scraper1.scrape(input.value),
-  scraper2.scrape(input.value)
-]).then(results => {
-  results[0];
-  results[1];
-  const $widget = renderWidget(results[0], results[1]);
-  // appendChild($widget)
-});
+// let scraper1 = new ImdbPageScraper
+// let scraper2= new RottenTomatoesScraper
+// Promise.all([
+//   scraper1.scrape(input.value),
+//   scraper2.scrape(input.value)
+// ]).then(results => {
+//   results[0];
+//   results[1];
+//   const $widget = renderWidget(results[0], results[1]);
+//   $root.appendChild($widget)
+// });
