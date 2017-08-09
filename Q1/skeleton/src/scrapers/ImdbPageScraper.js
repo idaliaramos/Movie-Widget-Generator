@@ -5,7 +5,7 @@ class ImdbPageScraper {
       .then(html => {
         let parser = new DOMParser();
         let doc = parser.parseFromString(html, 'text/html');
-        console.log(doc);
+        // console.log(doc);
         let movieObject = {};
 
         let $rating = doc.querySelector('.ratingValue').children[0].children[0]

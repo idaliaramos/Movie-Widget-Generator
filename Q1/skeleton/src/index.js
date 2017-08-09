@@ -10,15 +10,27 @@ function run() {
   // 1. generate the HTML form that takes the URL as input
   // 2. when that form submits, invoke your scraper (i.e. call scraper.scrape(url))
   // 3. when that scraper finishes, generate a widget
+  const $button = document.querySelector('button');
+  const $input = document.querySelector('input');
   let scraper = new ImdbPageScraper();
-  scraper
-    .scrape('http://www.imdb.com/title/tt5140878/?ref_=inth_ov_tt')
-    .then(data => {
+  $button.addEventListener('click', function(event) {
+    event.preventDefault();
+    const movieInput = $input.value;
+    console.log('Movie', movieInput);
+    scraper.scrape(movieInput).then(data => {
       console.log(data);
       const $widget = renderWidget(data);
       // $root.appendChild(nav)
       $root.appendChild($widget);
     });
+  });
+
+  // scraper.scrape(url).then(data => {
+  //   console.log(data);
+  //   const $widget = renderWidget(data);
+  //   // $root.appendChild(nav)
+  //   $root.appendChild($widget);
+  // });
   // $app = ????????;
   // $root.appendChild($app);
 }
@@ -27,9 +39,12 @@ function renderWidget(data) {
   return div(
     { class: 'row' },
     div(
-      { class: 'col s12 m7' },
+      { class: 'col s12 m6' },
       div({ class: 'card' }, [
-        div({ class: 'card-image' }, img({ src: 'data.poster' })),
+        div(
+          { class: 'card-image' },
+          img({ class: 'card-image', src: data.image, width: '300px' })
+        ),
         div({ class: 'card-title' }, data.title),
         div(
           { class: 'card-rating' },
