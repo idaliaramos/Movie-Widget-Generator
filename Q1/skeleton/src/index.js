@@ -1,4 +1,5 @@
 const ImdbPageScraper = require('./scrapers/ImdbPageScraper');
+// const RottenTomatoesScraper = require('./scrapers/RottenTomatoesScraper');
 const { div, img, p, main, form, button, a, input, nav } = require('elementx');
 
 addEventListener('DOMContentLoaded', run);
@@ -7,6 +8,7 @@ function run() {
   // $root.className = 'row';
   $root.appendChild(banner);
   $root.appendChild(search);
+  $root.appendChild(search2);
   $root.appendChild(container);
 
   const $button = document.querySelector('button');
@@ -17,7 +19,6 @@ function run() {
     const movieInput = $input.value;
     console.log('Movie', movieInput);
     scraper.scrape(movieInput).then(data => {
-      console.log(data);
       const $widget = renderWidget(data);
       // $root.appendChild(nav)
       $root.appendChild($widget);
@@ -43,9 +44,6 @@ function renderWidget(data) {
         div(
           { class: 'card-image' },
           img({ class: 'card-image', src: data.image })
-          // video({
-          //    width= "320", height = "240" },
-          //    source({src:'', type: "video/mp4" }))
         ),
         div({ class: 'card-title' }, data.title),
         div(
@@ -76,7 +74,39 @@ let search = main({ class: 'container' }, [
           { class: 'input-field' },
           input({
             type: 'url',
-            placeholder: 'Enter movie',
+            placeholder: 'Enter IMDB Url',
+            id: 'userInput',
+            name: 'search'
+          })
+        )
+      )
+      // div(
+      //   { class: 'col s3' },
+      //   button(
+      //     {
+      //       class: 'btn-large waves-effect waves-light',
+      //       type: 'submit',
+      //       name: 'action'
+      //     },
+      //     'Search'
+      //   )
+      // )
+    ]),
+    div({ id: 'listings', class: 'row' })
+  )
+]);
+
+let search2 = main({ class: 'container' }, [
+  div(
+    { class: 'row' },
+    form([
+      div(
+        { class: 'col offset-s2 s7' },
+        div(
+          { class: 'input-field' },
+          input({
+            type: 'url',
+            placeholder: 'Enter Rotten Tomatoes Url',
             id: 'userInput',
             name: 'search'
           })
@@ -98,27 +128,12 @@ let search = main({ class: 'container' }, [
   )
 ]);
 
-// NOTE: Pseudo-code for how to run two scrapers in parallel
-// Promise.all([
-//   scraper1.scrape('some imdb url'),
-//   scraper2.scrape('some net critic url')
-// ]).then(results => {
-//   results[0]; // <=== the daga object from imdb
-//   results[1]; // <=== the data object from meta critc
-//   const $widget = renderWidget(results[0], results[1]);
-//   // appendChild($widget)
-// })
-
-// function rottenTomatoesScraper() {
-//   fetch(
-//     'http://cors-bypass-proxy.axiomlogic.com/https://www.rottentomatoes.com/m/the_dark_tower_2017'
-//   )
-//     .then(response => response.text())
-//     .then(html => {
-//       console.log(html);
-//       let parser = new DOMParser();
-//       let doc = parser.parseFromString(html, 'text/html');
-//       // let image = doc.getElementsByClassName('image');
-//       console.log('the Doc', doc);
-//     });
-// }
+Promise.all([
+  scraper1.scrape(input.value),
+  scraper2.scrape(input.value)
+]).then(results => {
+  results[0];
+  results[1];
+  const $widget = renderWidget(results[0], results[1]);
+  // appendChild($widget)
+});

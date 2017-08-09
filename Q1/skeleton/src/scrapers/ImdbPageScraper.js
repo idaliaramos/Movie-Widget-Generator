@@ -10,6 +10,7 @@ class ImdbPageScraper {
         .then(html => {
           let parser = new DOMParser();
           let doc = parser.parseFromString(html, 'text/html');
+          console.log(doc);
 
           let movieObject = {};
 
@@ -33,10 +34,6 @@ class ImdbPageScraper {
           movieObject.metaCriticRating = $metaCriticRating
             ? $metaCriticRating.innerText
             : 'N/A';
-          // movieObject.title = $title;
-          // movieObject.metaCriticRating = $metaCriticRating;
-          //movieObject.summary = $summary;
-          // movieObject.image = $poster;
 
           return movieObject;
         })
