@@ -1,15 +1,22 @@
 const ImdbPageScraper = require('./scrapers/ImdbPageScraper');
 const RottenTomatoesScraper = require('./scrapers/RottenTomatoesScraper');
 const { div, img, p, main, form, button, a, input, nav } = require('elementx');
+const {
+  search,
+  createNavigation,
+  createContainer,
+  createSearch2
+} = require('./components/search');
 
 addEventListener('DOMContentLoaded', run);
 function run() {
   const $root = document.querySelector('#root');
   // $root.className = 'row';
-  $root.appendChild(banner);
-  $root.appendChild(search);
-  $root.appendChild(search2);
-  $root.appendChild(container);
+  $root.appendChild(createNavigation());
+  let searchDiv = search();
+  $root.appendChild(searchDiv);
+  $root.appendChild(createSearch2());
+  $root.appendChild(createContainer());
 
   const $button = document.querySelector('button');
   const $input = document.querySelectorAll('input')[0];
@@ -58,13 +65,13 @@ function renderWidget(data1, data2) {
         div({ class: 'card-title' }, data1.title),
         div(
           { class: 'card-rating' },
-          'Metacritic Rating ',
+          'Metacritic Rating: ',
           data1.metaCriticRating + '%'
         ),
         div({ class: 'card-rating' }, 'IMDB Rating ', data1.rating),
         div(
           { class: 'card-rating' },
-          'Rotten Tomatoes Rating ',
+          'Rotten Tomatoes Rating: ',
           data2.rottenRating + '%'
         ),
         div({ class: 'card-content' }, 'Summary', p(data1.summary))
@@ -73,75 +80,64 @@ function renderWidget(data1, data2) {
   );
 }
 
-let container = div({ class: 'container row' });
+// let container = div({ class: 'container row' });
+//
+// let banner = nav(
+//   div({ class: 'nav-wrapper' }, div({ class: 'brand-logo' }, 'Movie title'))
+// );
 
-let banner = nav(
-  div({ class: 'nav-wrapper' }, a({ class: 'brand-logo' }, 'Movie title'))
-);
+// let search = main({ class: 'container' }, [
+//   div(
+//     { class: 'row' },
+//     form([
+//       div(
+//         { class: 'col offset-s2 s7' },
+//         div(
+//           { class: 'input-field' },
+//           input({
+//             type: 'url',
+//             placeholder: 'Enter IMDB Url',
+//             id: 'userInput',
+//             name: 'search'
+//           })
+//         )
+//       )
+//     ]),
+//     div({ id: 'listings', class: 'row' })
+//   )
+// ]);
 
-let search = main({ class: 'container' }, [
-  div(
-    { class: 'row' },
-    form([
-      div(
-        { class: 'col offset-s2 s7' },
-        div(
-          { class: 'input-field' },
-          input({
-            type: 'url',
-            placeholder: 'Enter IMDB Url',
-            id: 'userInput',
-            name: 'search'
-          })
-        )
-      )
-      // div(
-      //   { class: 'col s3' },
-      //   button(
-      //     {
-      //       class: 'btn-large waves-effect waves-light',
-      //       type: 'submit',
-      //       name: 'action'
-      //     },
-      //     'Search'
-      //   )
-      // )
-    ]),
-    div({ id: 'listings', class: 'row' })
-  )
-]);
-
-let search2 = main({ class: 'container' }, [
-  div(
-    { class: 'row' },
-    form([
-      div(
-        { class: 'col offset-s2 s7' },
-        div(
-          { class: 'input-field' },
-          input({
-            type: 'url',
-            placeholder: 'Enter Rotten Tomatoes Url',
-            id: 'userInput',
-            name: 'search'
-          })
-        )
-      ),
-      div(
-        { class: 'col s3' },
-        button(
-          {
-            class: 'btn-large waves-effect waves-light',
-            type: 'submit',
-            name: 'action'
-          },
-          'Search'
-        )
-      )
-    ]),
-    div({ id: 'listings', class: 'row' })
-  )
-]);
+// let search2 = main({ class: 'container' }, [
+//   div(
+//     { class: 'row' },
+//     form([
+//       div(
+//         { class: 'col offset-s2 s7' },
+//         div(
+//           { class: 'input-field' },
+//           input({
+//             type: 'url',
+//             placeholder: 'Enter Rotten Tomatoes Url',
+//             id: 'userInput',
+//             name: 'search'
+//           })
+//         )
+//       ),
+//       div(
+//         { class: 'col s3' },
+//         button(
+//           {
+//             class: 'btn-large waves-effect waves-light',
+//             type: 'submit',
+//             name: 'action'
+//           },
+//           'Search'
+//         )
+//       )
+//     ]),
+//     div({ id: 'listings', class: 'row' })
+//   )
+// ]);
 // let scraper1 = new ImdbPageScraper
 // let scraper2= new RottenTomatoesScraper
 // Promise.all([
