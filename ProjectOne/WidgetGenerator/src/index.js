@@ -5,7 +5,7 @@ const { div, img, p } = require('elementx');
 const {
   search,
   createNavigation,
-  createContainer,
+
   createSearch2
 } = require('./components/elementsCreated');
 
@@ -16,8 +16,7 @@ function run() {
 
   $root.appendChild(createNavigation());
   $root.appendChild(makeRow());
-  document.body.appendChild(createContainer());
-
+  const widgetC = document.getElementById('widget');
   const $button = document.querySelector('button');
   const $input = document.querySelectorAll('input')[0];
   const $input2 = document.querySelectorAll('input')[1];
@@ -32,19 +31,19 @@ function run() {
       scraper2.scrape(movieInput2)
     ]).then(results => {
       const $widget = renderWidget(results[0], results[1]);
-      $root.appendChild($widget);
+      widgetC.appendChild($widget);
     });
   });
 }
 
 function renderWidget(data1, data2) {
   return div(
-    { class: 'card-image' },
+    { class: 'card' },
     div(
-      { class: 'col s12 m6' },
-      div({ class: 'card' }, [
+      { class: 'col s12 m3' },
+      div({ class: 'card-content' }, [
         div(
-          { class: 'card-image' },
+          { class: 'card-image waves-effect waves-block waves-light' },
           img({ class: 'card-image', src: data1.image })
         ),
         div({ class: 'card-title' }, data1.title),
@@ -64,13 +63,13 @@ function renderWidget(data1, data2) {
     )
   );
 }
+
 function makeRow() {
   return div(
     { class: 'row' },
+    div({ class: 's12 m6 l6' }, search(), createSearch2()),
     div(
-      { class: 'col s5 push-s7' },
-      'this div is 7-columns wide on pushed to the right by 5-columns.'
-    ),
-    div({ class: 'col s7 pull-s5' }, search(), createSearch2())
+      { class: 's12 m6 l6', id: 'widget' } //Widget goes here
+    )
   );
 }

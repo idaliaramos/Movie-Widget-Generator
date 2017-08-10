@@ -16,7 +16,7 @@ function createNavigation() {
 function search() {
   return main({ class: 'container' }, [
     div(
-      { class: 'row' },
+      { class: 'thing' },
       form([
         div(
           { class: 'col s12 m6' },
@@ -38,7 +38,7 @@ function search() {
 function createSearch2() {
   return main({ class: 'container' }, [
     div(
-      { class: 'row' },
+      { class: 'thing' },
       form([
         div(
           { class: 'col s12 m6' },
