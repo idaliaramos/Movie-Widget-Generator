@@ -7,7 +7,7 @@ function createContainer() {
 function createNavigation() {
   return nav(
     div(
-      { class: 'nav-wrapper red darken-4 ' },
+      { class: 'nav-wrapper black ' },
       div({ class: 'brand-logo left' }, 'Movie Crunch')
     )
   );

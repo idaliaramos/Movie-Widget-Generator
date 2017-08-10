@@ -40,10 +40,10 @@ function renderWidget(data1, data2) {
   return div(
     { class: 'card' },
     div(
-      { class: 'col s12 m3' },
+      { class: 'col s12 m6 l4' },
       div({ class: 'card-content' }, [
         div(
-          { class: 'card-image waves-effect waves-block waves-light' },
+          { class: 'card-image' },
           img({ class: 'card-image', src: data1.image })
         ),
         div({ class: 'card-title' }, data1.title),
@@ -69,7 +69,7 @@ function makeRow() {
     { class: 'row' },
     div({ class: 's12 m6 l6' }, search(), createSearch2()),
     div(
-      { class: 's12 m6 l6', id: 'widget' } //Widget goes here
+      { class: 's12 m6 l6 ', id: 'widget' } //Widget goes here
     )
   );
 }
