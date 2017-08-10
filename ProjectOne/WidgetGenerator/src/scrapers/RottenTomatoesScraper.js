@@ -8,7 +8,6 @@ class RottenTomatoesScraper {
       let ratingObj = {};
       let $rottenRating = doc.querySelector('.meter-value span');
       ratingObj.rottenRating = $rottenRating ? $rottenRating.innerText : 'N/A';
-      console.log($rottenRating.innerText);
       return ratingObj;
     });
   }

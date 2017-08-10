@@ -8,7 +8,7 @@ function createNavigation() {
   return nav(
     div(
       { class: 'nav-wrapper red darken-4 ' },
-      div({ class: 'brand-logo center' }, 'Movie Crunch')
+      div({ class: 'brand-logo left' }, 'Movie Crunch')
     )
   );
 }
@@ -19,7 +19,7 @@ function search() {
       { class: 'row' },
       form([
         div(
-          { class: 'col offset-s2 s7' },
+          { class: 'col s12 m6' },
           div(
             { class: 'input-field' },
             input({
@@ -41,7 +41,7 @@ function createSearch2() {
       { class: 'row' },
       form([
         div(
-          { class: 'col s3 m3' },
+          { class: 'col s12 m6' },
           div(
             { class: 'input-field' },
             input({
@@ -68,4 +68,10 @@ function createSearch2() {
     )
   ]);
 }
-module.exports = { search, createNavigation, createSearch2, createContainer };
+
+module.exports = {
+  search,
+  createNavigation,
+  createSearch2,
+  createContainer
+};

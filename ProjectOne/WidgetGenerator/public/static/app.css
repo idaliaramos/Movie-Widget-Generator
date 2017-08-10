@@ -5,3 +5,6 @@
   display: flex: row;
   flex-direction: row;
 }
+.card-rating{
+margin-left: 20px;
+}
