@@ -37,35 +37,35 @@ function search() {
 }
 function createSearch2() {
   return main({ class: 'container' }, [
-    div(
-      { class: 'thing' },
-      form([
+    // div(
+    //   { class: 'thing' },
+    form([
+      div(
+        { class: 'col s12 m6' },
         div(
-          { class: 'col s12 m6' },
-          div(
-            { class: 'input-field' },
-            input({
-              type: 'url',
-              placeholder: 'Enter Rotten Tomatoes Url',
-              id: 'userInput',
-              name: 'search'
-            })
-          )
-        ),
-        div(
-          { class: 'col s3 m6' },
-          button(
-            {
-              class: 'btn-large amber',
-              type: 'submit',
-              name: 'action'
-            },
-            'Search'
-          )
+          { class: 'input-field' },
+          input({
+            type: 'url',
+            placeholder: 'Enter Rotten Tomatoes Url',
+            id: 'userInput',
+            name: 'search'
+          })
         )
-      ]),
-      div({ id: 'listings', class: 'row' })
-    )
+      ),
+      div(
+        { class: 'col s3 m6' },
+        button(
+          {
+            class: 'btn-large amber',
+            type: 'submit',
+            name: 'action'
+          },
+          'Search'
+        )
+      )
+    ]),
+    div({ id: 'listings', class: 'row' })
+    // )
   ]);
 }
 

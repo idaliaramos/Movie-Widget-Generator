@@ -10,6 +10,7 @@
   color: white;
   font-weight: lighter;
   font-style: oblique;
+  margin-top: 5px;
 }
 .card .card-content .card-title {
   display: block;

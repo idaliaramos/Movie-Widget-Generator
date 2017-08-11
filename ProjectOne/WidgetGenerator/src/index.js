@@ -73,13 +73,13 @@ function renderWidget(data1, data2) {
       div(
         { class: 'card-stacked' },
         div(
-          { class: 'card-rating' },
+          { class: 'card-rating', id: 'firstRating' },
           'Metacritic Rating: ',
           data1.metaCriticRating + '%'
         ),
         div({ class: 'card-rating' }, 'IMDB Rating: ', data1.rating),
         div(
-          { class: 'card-rating', style: 'font-weight= oblique' },
+          { class: 'card-rating' },
           'Rotten Tomatoes Rating: ',
           data2.rottenRating + '%'
         ),
