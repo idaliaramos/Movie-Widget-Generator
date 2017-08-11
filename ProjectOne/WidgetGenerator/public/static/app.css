@@ -8,6 +8,9 @@
 .card-rating {
   margin-left: 10px;
   color: white;
+  font-weight: lighter;
+  font-style: oblique;
+  margin-top: 5px;
 }
 .card .card-content .card-title {
   display: block;
@@ -16,6 +19,7 @@
   margin-left: 10px;
   margin-right: 10px;
   color: white;
+  margin-top: 10px;
 }
 
 .card .card-content {
@@ -24,5 +28,18 @@
   background-color: black;
 }
 .card .card-content p {
-  color: white;
+  color: #d3d3d3;
+  font-weight: lighter;
+  font-style: oblique;
+  margin-left: -15px;
+}
+.card .card-content {
+  border: 10px;
+}
+
+.card.horizontal .card-stacked {
+  background-color: black;
+}
+.card .card-image {
+  background-color: black;
 }
