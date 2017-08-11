@@ -65,7 +65,7 @@ function run() {
 // }
 function renderWidget(data1, data2) {
   return div(
-    { class: 'col s12 m7' },
+    { class: 'col s12 m6 l4' },
     div({ class: 'header' }, data1.title),
     div(
       { class: 'card horizontal' },
