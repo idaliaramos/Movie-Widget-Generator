@@ -14,9 +14,9 @@ function createNavigation() {
 }
 
 function search() {
-  return main({ class: 'container' }, [
+  return main({ class: 'container small' }, [
     div(
-      { class: 'thing' },
+      { class: 'cards' },
       form([
         div(
           { class: 'col s12 m6' },

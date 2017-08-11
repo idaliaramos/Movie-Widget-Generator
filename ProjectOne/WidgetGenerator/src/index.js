@@ -36,17 +36,42 @@ function run() {
   });
 }
 
+// function renderWidget(data1, data2) {
+//   return div(
+//     { class: 'card' },
+//     div(
+//       { class: 'col s12 m6 l4' },
+//       div({ class: 'card-content' }, [
+//         div(
+//           { class: 'card-image' },
+//           img({ class: 'card-image', src: data1.image })
+//         ),
+//         div({ class: 'card-title' }, data1.title),
+//         div(
+//           { class: 'card-rating' },
+//           'Metacritic Rating: ',
+//           data1.metaCriticRating + '%'
+//         ),
+//         div({ class: 'card-rating' }, 'IMDB Rating: ', data1.rating),
+//         div(
+//           { class: 'card-rating', style: 'font-weight= oblique' },
+//           'Rotten Tomatoes Rating: ',
+//           data2.rottenRating + '%'
+//         ),
+//         div({ class: 'card-content' }, p(data1.summary))
+//       ])
+//     )
+//   );
+// }
 function renderWidget(data1, data2) {
   return div(
-    { class: 'card' },
+    { class: 'col s12 m7' },
+    div({ class: 'header' }, data1.title),
     div(
-      { class: 'col s12 m6 l4' },
-      div({ class: 'card-content' }, [
-        div(
-          { class: 'card-image' },
-          img({ class: 'card-image', src: data1.image })
-        ),
-        div({ class: 'card-title' }, data1.title),
+      { class: 'card horizontal' },
+      div({ class: 'card-image' }, img({ src: data1.image })),
+      div(
+        { class: 'card-stacked' },
         div(
           { class: 'card-rating' },
           'Metacritic Rating: ',
@@ -54,16 +79,15 @@ function renderWidget(data1, data2) {
         ),
         div({ class: 'card-rating' }, 'IMDB Rating: ', data1.rating),
         div(
-          { class: 'card-rating' },
+          { class: 'card-rating', style: 'font-weight= oblique' },
           'Rotten Tomatoes Rating: ',
           data2.rottenRating + '%'
         ),
         div({ class: 'card-content' }, p(data1.summary))
-      ])
+      )
     )
   );
 }
-
 function makeRow() {
   return div(
     { class: 'row' },
